@@ -58,3 +58,16 @@ def guess_your_name_3_times( name : str) -> str :
 #break statement jump out of the lopp
 #continue reevaluates the loop condition
 #guess_your_name_3_times('Marco')
+
+def get_personal_data() -> list:    
+    age = input("whats your age? \t")
+    weight = input("Whats your weight \t")
+    name = input("Whats your name \t ")
+    personal_data = [age, weight, name]
+    return personal_data
+
+def print_personal_data() -> str:
+    personal_data = get_personal_data()
+    return print( "Your name is %s and you are %s and your weight is %s" % (personal_data[2],personal_data[0],personal_data[1]))
+
+print_personal_data()
