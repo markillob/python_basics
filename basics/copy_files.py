@@ -17,4 +17,14 @@ def copy_two_txt_files( file_one: str , file_two : str ) -> str:
     final_file_data.close()
     return 
 
-copy_two_txt_files(source_file, destination_file)
+#copy_two_txt_files(source_file, destination_file)
+#def foo3(*args, **kwargs):
+#    print("{} {}".format(args, kwargs))
+
+def multiple_args(*args):  
+    #for arg in args:  
+    #    print (arg)
+    print(args)
+    return True
+multiple_args(1,2,3,4)
+
