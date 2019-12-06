@@ -11,7 +11,7 @@ def validate_3_arguments() -> bool:
 script, filename = argv 
 txt_file = open(filename)
 print( "Here is your filename %s" % filename )
-print (txt_file.readline(3))
+print (txt_file.read())
 txt_file.close()
 '''
 print ("Type the file name again: ")
