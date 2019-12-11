@@ -1,8 +1,4 @@
-1
-2
-3
-4
-1
-3
-5
-2
+Gi0/0/0.200            10.202.4.254    YES other  up                    up                                                             
+Gi0/0/0.201            10.202.5.254    YES other  up                    up                                                             
+GigabitEthernet0/0/1   65.118.47.145   YES other  up                    up   <-- REPLIED FROM OFFICE and london                                                           
+GigabitEthernet0/0/2   184.181.15.75   YES other  up                    up   <-- replied from AUSTIN      
