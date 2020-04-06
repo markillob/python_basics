@@ -1,17 +1,74 @@
 #!/usr/bin/python
+
+import re
+import sys 
+
+def get_palindromo( word_var : str ) -> str:
+    counter = len(word_var) -1 
+    word_var_decrease = word_var
+    for k in range(counter):
+        if word_var[k] == word_var_decrease[counter]:
+            counter -=1
+        else:
+            return print("no es palindromo")
+    return print(" {} is palindromo".format(word_var))
+
+def is_anagrama( word_var : str , second_word_var : str) -> str:
+    if len(word_var) == len(second_word_var):
+        for k in range(len(word_var)):
+            if second_word_var[k] not in word_var:
+                print ("not anagrama")
+        return print("anagrama")
+    else:
+        return print("no es un anagrama")
+
+def get_needle_haystack( haystack : str, needle : str ) -> str:
+    needle_counter = 0
+    needle_limit = len(needle) -1
+    index_list = []
+    for k in range(len(haystack)):
+        if haystack[k] == needle[needle_counter]:
+            index_list.append(k)
+            if needle_counter < needle_limit:
+                needle_counter +=1
+            else:
+                return(print(index_list[0]))
+    return print("-1")
+
+
+def main():
+    #word_var = input()
+    #word_var = "anitalavalatina"
+    #get_palindromo(word_var)
+    #is_anagrama("bb", "alomph")
+    get_needle_haystack("hello","ll")
+
+
+
+if __name__ =="__main__":
+    main()
+
+
+#arrays
+#
 #
 # 
-td_list = [1,1,5,2,1]
-k = 8
-i = 0
-j = 0
-sum = 0 
- i     j    sum     
-[0] ,  0     1     sum < k   
-[1] ,  0     2     sum < k 
-[2] ,  0     7     sum < k 
-[3],   0     9     sum > k ;  sum - td_list[j] = 8 (sum)  , j + 1 , sum > k , True 
-
+#td_list = [1,1,5,0,0,2,1]
+# k=0
+# output[0,0] 
+#set =[1,2,3]
+#Input: haystack = "hello", needle = "ll"
+#Output: 2
+#https://leetcode.com/problems/implement-strstr/
+#palindromo oso --> oso -> True
+#anagrama   atotonilco -- colitonato ->
+#histograma de caracteres
+#https://leetcode.com/problems/index-pairs-of-a-string/
+#
+# A-Z, 0-9 
+# ASCII
+#string_search 
+# clases y objectos
 # 
 # invariant 
 # slicing window
@@ -22,14 +79,3 @@ sum = 0
 # O(n^2)  cuadratico 
 # O(n^3) 
 # O(n^4) 
-
-def sum_k ( k : int , list_dt : list ) -> bool:    
-    sum_int = 0
-    for count in list_dt:
-        
-    return var_bool
-
-sum_k(k, td_list)
-
-#arrays
-#
