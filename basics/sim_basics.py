@@ -26,23 +26,30 @@ def get_needle_haystack( haystack : str, needle : str ) -> str:
     needle_limit = len(needle) -1
     needle_index = 0
     index_list = []
-    for k in range(len(haystack)):
-        if haystack[k] == needle[needle_index] and needle_index< needle_limit:
-            index_list.append (k)
-            if len(index_list) > 1:
-                if index_list[needle_index] - index_list[needle_index-1] > 1 :
-                    return(print("-1"))
-            needle_index+=1
-    return print (index_list[0])
+    if len(needle) > 0:
+        for k in range(len(haystack)):
+            if haystack[k] == needle[needle_index] and needle_index< needle_limit:
+                index_list.append (k)
+                if len(index_list) > 1:
+                    if index_list[needle_index] - index_list[needle_index-1] > 1 :
+                        return print("-1")
+                needle_index+=1
+        if index_list:
+            return print(index_list[0])
+        else:
+            return print("-1")
+        return print (index_list[0])
+    return print("-1")
 
 def main():
     #word_var = input()
     #word_var = "anitalavalatina"
     #get_palindromo(word_var)
     #is_anagrama("bb", "alomph")
-    get_needle_haystack("aamacoa","maco")
-    get_needle_haystack("helloll","ll")
-    get_needle_haystack("marxxxco","marco")
+    get_needle_haystack("zzzzmarco","marcozzzz")
+    #get_needle_haystack("aamacoa","")
+    #get_needle_haystack("helloll","ll")
+    #get_needle_haystack("marxxxco","marco")
     #get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"])
 
 #def get_indexpairs( full_string : str , list_of_words: list) -> list:
