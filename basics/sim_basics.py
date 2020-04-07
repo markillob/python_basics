@@ -23,27 +23,33 @@ def is_anagrama( word_var : str , second_word_var : str) -> str:
         return print("no es un anagrama")
 
 def get_needle_haystack( haystack : str, needle : str ) -> str:
-    needle_counter = 0
     needle_limit = len(needle) -1
+    needle_index = 0
     index_list = []
     for k in range(len(haystack)):
-        if haystack[k] == needle[needle_counter]:
-            index_list.append(k)
-            if needle_counter < needle_limit:
-                needle_counter +=1
-            else:
-                return(print(index_list[0]))
-    return print("-1")
-
+        if haystack[k] == needle[needle_index] and needle_index< needle_limit:
+            index_list.append (k)
+            if len(index_list) > 1:
+                if index_list[needle_index] - index_list[needle_index-1] > 1 :
+                    return(print("-1"))
+            needle_index+=1
+    return print (index_list[0])
 
 def main():
     #word_var = input()
     #word_var = "anitalavalatina"
     #get_palindromo(word_var)
     #is_anagrama("bb", "alomph")
-    get_needle_haystack("hello","ll")
+    get_needle_haystack("aamacoa","maco")
+    get_needle_haystack("helloll","ll")
+    get_needle_haystack("marxxxco","marco")
+    #get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"])
 
-
+#def get_indexpairs( full_string : str , list_of_words: list) -> list:
+#    list_temp = list_of_words
+#    for i in range(len(list_temp)):
+#         
+#   return print(list_temp[0])
 
 if __name__ =="__main__":
     main()
