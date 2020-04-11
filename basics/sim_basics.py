@@ -33,49 +33,29 @@ def is_anagrama( word_var : str , second_word_var : str) -> str:
 #"issip"
 # ord('a')
 
-# aaa a, 
-# 0,haystack[0]=m,needle[0] i  = ,# 1,haystack[1]=i,needle[0] i,< 4 [i] # 2,haystack[2]=s,needle[1] s,<= 4 index_neddle[1] 2 -1 =1, index_neddle[1,2]
-## 3,haystack[3]=s,needle[2]=s 2 <= 4,index_neddle [1,2] 3 -2 = 1 ,index_neddle = [1,2,3] 5 ==3,
-# 4,haystack[4]=i,needle[3]=i, 3 <=4  ,n =4 - 3 = 1 , index_neddle = [1,2,3,4] 5 ==4 Faslse, wc 4 in_pr = 4
-# 5,haystack[5]=s,needle[4]=p,2 4 <= 4, wc = 0  index_neddle  = [] , n = ind_need[nc]
-# 6,haystack[4]=i,needle[0]=i, wc = 0 index_neddle  = []
-# 7,haystack[7]=O,needle[4]=O, 4<=4 , 7 - 6 ==1 index_neddle  = [3,4,5,6,7] < 4
-# 8,haystack[8]=z,needle[4]=O, index_neddle  = [3,4,5,6,7] < 4
-
 def get_needle_haystack( haystack : str, needle : str ) -> str:
-    if needle or len(haystack) < len(needle):
-        if haystack == needle:
+    if needle:
+        if len(haystack) > len(needle):
+            needle_index = 0
+            size_needle = len(needle) -1
+            index_list = []
+            for index_hs in range(len(haystack)):
+                if haystack[index_hs] == needle[needle_index]:
+                    int_hay_in = index_hs
+                    for index in range(len(needle)):
+                        if haystack[int_hay_in] == needle[index]:
+                            index_list.append(int_hay_in) 
+                            int_hay_in +=1 
+                            if index == size_needle:
+                                return index_list[0]
+                        else:
+                            index_list = [] 
+                            needle_index = 0
+            return(-1)
+        elif haystack == needle:
             return 0
         else:
-            needle_length = len(needle) - 1
-            index_neddle = []
-            word_count_needle = 0
-            index_needle_previous = 0
-            for n in range(len(haystack)):
-                print(n)
-                if haystack[n] == needle[word_count_needle] and word_count_needle <= needle_length: 
-                    if index_neddle:
-                        if n - index_neddle[word_count_needle -1] == 1:
-                            index_neddle.append(n)
-                            word_count_needle+=1
-                            index_needle_previous = n
-                            #print(index_needle_previous,"s")
-                            if len(index_neddle) == len(needle):
-                                return index_neddle[0]
-                        else:
-                            index_neddle = []
-                    else:
-                        index_neddle.append(n)
-                        if needle_length == word_count_needle:
-                            return 0
-                        else:
-                            word_count_needle+=1
-                else:
-                    word_count_needle = 0
-                    index_neddle = []
-                    n = index_needle_previous
-                    #print(n)
-            return -1
+            return(-1)
     else:
         return 0
 
@@ -86,10 +66,11 @@ def main():
     #word_var = "anitalavalatina"
     #get_palindromo(word_var)
     #is_anagrama("bb", "alomph")
-    print(get_needle_haystack("mississippi","issip"))
-    #get_needle_haystack("aamacoa","")
-    #get_needle_haystack("helloll","ll")
-    #get_needle_haystack("marxxxco","marco")
+    print(get_needle_haystack("sissippi","issipi"))
+    #print(get_needle_haystack("aavbbbaaaaabb","bb"))
+    #print(get_needle_haystack("aaaab","b"))
+    #print(get_needle_haystack("hello","ll"))
+    #print(get_needle_haystack("marxxxco","marco"))
     #get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"])
 
 #def get_indexpairs( full_string : str , list_of_words: list) -> list:
