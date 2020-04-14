@@ -68,6 +68,39 @@ def get_needle_haystack( haystack : str, needle : str ) -> str:
     else:
         return 0
 
+    #1 <= text.length <= 100
+    #1 <= words.length <= 20
+    #1 <= words[i].length <= 50
+    #Input: text = "ababa", words = ["aba","ab"]
+    #Output: [[0,1],[0,2],[2,3],[2,4]]
+    
+def get_indexpairs( cadena : str, lista : list) -> tuple:
+    result_tupple = ()
+    list_length = []
+    total_length = []
+    results = []
+    for item in lista:
+        for index in range(len(cadena)):
+            if item[0] == cadena[index] and (index + len(item)) <= len(cadena):
+                list_length.append(index)
+        total_length.append(list_length)
+        list_length = []
+    #validate same list elements
+    if len(lista) == len(total_length):
+        for k, v in zip(total_length, lista):
+            for z in k:
+                local_value = z
+                local_list = []
+                for index in range(len(v)):
+                    if cadena[local_value] == v[index]:
+                        local_list.append(index)
+                        local_value +=1
+            results.append(local_list)
+            
+        print(results)
+    else:
+        return -1        
+    return result_tupple
 
 
 def main():
@@ -78,9 +111,10 @@ def main():
     #print(get_needle_haystack("ississippi","issip"))
     #print(get_needle_haystack("aavbbbaaaaabb","bb"))
     #print(get_needle_haystack("aaaab","b"))
-    print(get_needle_haystack("mississipi","pi"))
+    #print(get_needle_haystack("mississipi","pi"))
     #print(get_needle_haystack("hello","ll"))
     #print(get_needle_haystack("marxxxco","marco"))
+    get_indexpairs("ababa",["aba","ab"])
     #get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"])
 
 #def get_indexpairs( full_string : str , list_of_words: list) -> list:
