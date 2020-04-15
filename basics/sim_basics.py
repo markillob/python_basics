@@ -75,36 +75,37 @@ def get_needle_haystack( haystack : str, needle : str ) -> str:
     #Output: [[0,1],[0,2],[2,3],[2,4]]
     
 def get_indexpairs( cadena : str, lista : list) -> tuple:
-    result_tupple = ()
     list_length = []
-    total_length = []
+    valid_index = []
     results = []
     for item in lista:
         for index in range(len(cadena)):
             if item[0] == cadena[index] and (index + len(item)) <= len(cadena):
                 list_length.append(index)
-        total_length.append(list_length)
+        valid_index.append(list_length)
         list_length = []
-    #validate same list elements
-    if len(lista) == len(total_length):
-        for k, v in zip(total_length, lista):
-            for z in k:
-                local_value = z
-                local_list = []
-                for index in range(len(v)):
-                    if cadena[local_value] == v[index]:
-                        local_list.append(index)
-                        local_value +=1
-            results.append(local_list)
-            
-        print(results)
+    if len(lista) == len(valid_index):
+        for k, v in zip(valid_index, lista): 
+            for z in k: 
+                local_value = z 
+                local_list = [] 
+                for index_local in range(len(v)): 
+                    if cadena[local_value] == v[index_local]: 
+                        local_list.append(local_value) 
+                        local_value +=1 
+                results.append(local_list)
+        index_results = []
+        for items in results:
+            local_index = [items[0],items[len(items)-1]]
+            index_results.append(local_index)
+        return index_results
     else:
         return -1        
-    return result_tupple
 
 
 def main():
-    #word_var = input()
+    get_indexpairs("ababa",["aba","ab"])
+    # #word_var = input()
     #word_var = "anitalavalatina"
     #get_palindromo(word_var)
     #is_anagrama("bb", "alomph")
@@ -114,8 +115,7 @@ def main():
     #print(get_needle_haystack("mississipi","pi"))
     #print(get_needle_haystack("hello","ll"))
     #print(get_needle_haystack("marxxxco","marco"))
-    get_indexpairs("ababa",["aba","ab"])
-    #get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"])
+    print(get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"]))
 
 #def get_indexpairs( full_string : str , list_of_words: list) -> list:
 #    list_temp = list_of_words
