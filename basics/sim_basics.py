@@ -77,34 +77,54 @@ def get_needle_haystack( haystack : str, needle : str ) -> str:
 def get_indexpairs( cadena : str, lista : list) -> tuple:
     list_length = []
     valid_index = []
+    valid_words = []
     results = []
+    #"baabaaa",["b","a","ba","bb","aa"]))
+    #validate which words are in cadene in list
     for item in lista:
+        if item in cadena:
+            valid_words.append(item)
+    #get the index of each valid word and confirm are within the length of the cadena
+    for item in valid_words:
         for index in range(len(cadena)):
             if item[0] == cadena[index] and (index + len(item)) <= len(cadena):
                 list_length.append(index)
         valid_index.append(list_length)
         list_length = []
-    if len(lista) == len(valid_index):
-        for k, v in zip(valid_index, lista): 
-            for z in k: 
-                local_value = z 
-                local_list = [] 
-                for index_local in range(len(v)): 
-                    if cadena[local_value] == v[index_local]: 
-                        local_list.append(local_value) 
-                        local_value +=1 
-                results.append(local_list)
-        index_results = []
-        for items in results:
-            local_index = [items[0],items[len(items)-1]]
-            index_results.append(local_index)
-        return index_results
-    else:
-        return -1        
-
+    word_index = {}
+    count = 0
+    #create a dictionary with valid words and valid index
+    for words in valid_words:
+        word_index[words] = valid_index[count]
+        count+=1
+    #for each value index assign the letters on string 
+    for k,v in word_index.items():
+        local_list = []
+        for index in v:
+            local_list2=[]
+            local_index = index
+            for size, value in enumerate(k,1):
+                if cadena[local_index] == value:
+                    local_list2.append(local_index)
+                    local_index+=1
+                else:
+                    local_list2 = []
+            local_index=0
+            if local_list2:
+                local_list.append(local_list2)
+        results.append(local_list)
+    final_results=[]
+    for items in results:
+        for index in items:
+            local_index = [index[0],index[len(index)-1]]
+            final_results.append(local_index)
+    return sorted(final_results)        
 
 def main():
-    get_indexpairs("ababa",["aba","ab"])
+    print(get_indexpairs("ababa",["aba","ab"]))
+    print(get_indexpairs("baabaaa",["b","a","ba","bb","aa"]))
+    print(get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"]))
+    print(get_indexpairs("baababbabaababbbbbbb",["bba","aba","abb","aa","ba"])) 
     # #word_var = input()
     #word_var = "anitalavalatina"
     #get_palindromo(word_var)
@@ -115,7 +135,7 @@ def main():
     #print(get_needle_haystack("mississipi","pi"))
     #print(get_needle_haystack("hello","ll"))
     #print(get_needle_haystack("marxxxco","marco"))
-    print(get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"]))
+    #print(get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"]))
 
 #def get_indexpairs( full_string : str , list_of_words: list) -> list:
 #    list_temp = list_of_words
