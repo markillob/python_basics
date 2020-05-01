@@ -79,12 +79,9 @@ def get_indexpairs( cadena : str, lista : list) -> tuple:
     valid_index = []
     valid_words = []
     results = []
-    #"baabaaa",["b","a","ba","bb","aa"]))
-    #validate which words are in cadene in list
     for item in lista:
         if item in cadena:
             valid_words.append(item)
-    #get the index of each valid word and confirm are within the length of the cadena
     for item in valid_words:
         for index in range(len(cadena)):
             if item[0] == cadena[index] and (index + len(item)) <= len(cadena):
@@ -93,31 +90,24 @@ def get_indexpairs( cadena : str, lista : list) -> tuple:
         list_length = []
     word_index = {}
     count = 0
-    #create a dictionary with valid words and valid index
     for words in valid_words:
         word_index[words] = valid_index[count]
         count+=1
-    #for each value index assign the letters on string 
     for k,v in word_index.items():
         local_list = []
         for index in v:
             local_list2=[]
-            local_index = index
-            for size, value in enumerate(k,1):
-                if cadena[local_index] == value:
-                    local_list2.append(local_index)
-                    local_index+=1
-                else:
-                    local_list2 = []
-            local_index=0
+            if cadena[index:len(k)+index] == k:
+                for z in range(len(k)):
+                    local_list2.append(z+index)
             if local_list2:
-                local_list.append(local_list2)
+                local_list.append(local_list2)                    
         results.append(local_list)
     final_results=[]
     for items in results:
         for index in items:
             local_index = [index[0],index[len(index)-1]]
-            final_results.append(local_index)
+            final_results.append(local_index) 
     return sorted(final_results)        
 
 def main():
@@ -125,6 +115,7 @@ def main():
     print(get_indexpairs("baabaaa",["b","a","ba","bb","aa"]))
     print(get_indexpairs("thestoryofleetcodeandme",["story","fleet","leetcode"]))
     print(get_indexpairs("baababbabaababbbbbbb",["bba","aba","abb","aa","ba"])) 
+    #[[0,1],[1,2],[2,4],[3,4],[4,6],[5,7],[6,7],[7,9],[8,9],[9,10],[10,12],[11,12],[12,14]]
     # #word_var = input()
     #word_var = "anitalavalatina"
     #get_palindromo(word_var)
