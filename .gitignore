@@ -1,2 +1,4 @@
 *.txt
 *.cfg
+/bin
+/lib
